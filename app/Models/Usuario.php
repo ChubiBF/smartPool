@@ -15,6 +15,7 @@ class Usuario extends Authenticatable
     protected $primaryKey = 'ID_Usuario';
     public $timestamps = false;
 
+
     protected $fillable = [
         'Nombre',
         'Apellido',
@@ -42,5 +43,14 @@ class Usuario extends Authenticatable
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'ID_Rol');
+    }
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class, 'ID_Usuario', 'ID_Usuario');
+    }
+
+    public function empleado()
+    {
+        return $this->hasOne(Empleado::class, 'ID_Usuario', 'ID_Usuario');
     }
 }
